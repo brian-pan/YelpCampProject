@@ -14,7 +14,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const methodOverride = require('method-override');
-const Campground = require('./models/campground')
+const Campground = require('./models/campground');
+const campground = require('./models/campground');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
@@ -58,6 +59,12 @@ app.put('/campgrounds/:id', async (req, res) => {
     const { id } = req.params;
     const campground = await Campground.findByIdAndUpdate(id, {...req.body.campground}, {new: true});
     res.redirect(`/campgrounds/${campground._id}`)
+})
+
+app.delete('/campgrounds/:id', async (req,res) => {
+    const {id} = req.params;
+    await Campground.findByIdAndDelete(id);
+    res.redirect('/campgrounds')
 })
 
 app.listen(3000, () => {
