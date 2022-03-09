@@ -13,10 +13,11 @@ db.once('open', () => {
 const express = require('express');
 const app = express();
 const path = require('path');
+const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const Campground = require('./models/campground');
-const campground = require('./models/campground');
 
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
 
