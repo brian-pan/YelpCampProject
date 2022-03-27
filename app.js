@@ -29,6 +29,7 @@ const User = require('./models/user');
 //routers
 const campgroundRoutes = require('./routes/campground')
 const reviewRoutes = require('./routes/review')
+const userRoutes = require('./routes/users')
 
 //view engine
 app.engine('ejs', ejsMate)
@@ -44,18 +45,18 @@ app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')));
 
 const sessionConfig = {
-    secret: 'secret',
-    saveUninitialized: true,
+    secret: 'thisshouldbeabettersecret!',
     resave: false,
+    saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        expires: Date.now() + 1000*60*60*24*7,
-        maxAge: 1000*60*60*24*7
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
     }
-};
-app.use(session(sessionConfig));
-    //flash middleware (needed before route handlers!)
-app.use(flash());
+}
+
+app.use(session(sessionConfig))
+app.use(flash());//flash middleware (needed before route handlers!)
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -71,13 +72,14 @@ app.use((req, res, next) => {
     next();
 })
 
-app.get('/fakeUser', async(req, res) => {
-    const user = new User({email: 'brian@gmail.com', username: 'BRrrrr'});
-    const newUser = await User.register(user, 'brianpan')
-    res.send(newUser);
-})
+// app.get('/fakeUser', async(req, res) => {
+//     const user = new User({email: 'brian@gmail.com', username: 'BRrrrr'});
+//     const newUser = await User.register(user, 'brianpan')
+//     res.send(newUser);
+// })
 
 //route handlers
+app.use('/', userRoutes);
 app.use('/campgrounds', campgroundRoutes)
 app.use('/campgrounds/:id/reviews', reviewRoutes)
 

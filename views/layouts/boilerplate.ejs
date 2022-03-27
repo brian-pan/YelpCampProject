@@ -17,7 +17,9 @@
     <%- include('../partials/navbar') %>
     <!-- this will be the only place for layout, every CRUD page has the same ones. -->
 
-    <main class="container mt-5"><%= success %> <%- body %></main>
+    <main class="container mt-5">
+      <%- include('../partials/flash') %> <%- body %>
+    </main>
     <%- include('../partials/footer') %>
 
     <script

@@ -13,15 +13,13 @@
   >
     <use xlink:href="#check-circle-fill" />
   </svg>
-  <p><%= success %></p>
+  <p class="mb-0"><%= success %></p>
   <button
     type="button"
     class="btn-close"
     data-bs-dismiss="alert"
     aria-label="Close"
-  >
-    <span aria-hidden="true">&times;</span>
-  </button>
+  ></button>
 </div>
 <% } %>
 
@@ -36,18 +34,16 @@
     width="24"
     height="24"
     role="img"
-    aria-label="Success:"
+    aria-label="Error:"
   >
     <use xlink:href="#check-circle-fill" />
   </svg>
-  <p><%= success %></p>
+  <p class="mb-0"><%= error %></p>
   <button
     type="button"
     class="btn-close"
     data-bs-dismiss="alert"
     aria-label="Close"
-  >
-    <span aria-hidden="true">&times;</span>
-  </button>
+  ></button>
 </div>
 <% } %>
