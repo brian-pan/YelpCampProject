@@ -1,3 +1,10 @@
+//if in development mode, require dotenv
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
+console.log(process.env.SECRET)
+
 //MongoDB
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/yelp-camp',{
