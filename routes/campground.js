@@ -17,11 +17,7 @@ router.get('/', catchAsync(campControl.index))
 //new route
 router.get('/new', isLoggedIn, campControl.new)
 
-// router.post('/', isLoggedIn, validateCampground, catchAsync(campControl.create))
-router.post('/', upload.array('image'), (req, res) => {
-    console.log(req.body, req.files);
-    res.send('it worked')
-})
+router.post('/', isLoggedIn, upload.array('image'), validateCampground, catchAsync(campControl.create))
 
 //show route
 router.get('/:id', catchAsync(campControl.show))
