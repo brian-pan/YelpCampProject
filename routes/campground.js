@@ -25,7 +25,7 @@ router.get('/:id', catchAsync(campControl.show))
 //edit route
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campControl.edit))
 
-router.put('/:id', isLoggedIn, validateCampground, isAuthor, catchAsync(campControl.update))
+router.put('/:id', isLoggedIn, isAuthor, upload.array('image'), validateCampground, catchAsync(campControl.update))
 
 //delete route
 router.delete('/:id', isLoggedIn, isAuthor, catchAsync(campControl.delete))
